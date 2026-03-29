@@ -65,9 +65,7 @@ def sync(db_id: str, items: list[dict]) -> tuple[int, int]:
             continue
 
         score = item.get("ai_score", 0)
-        if score < 5:
-            skipped += 1
-            continue
+        print(f"[Notion] Attempting to write: {item.get('name', 'unknown')} (score: {score})")
 
         success = _create_page(item)
         if success:
@@ -140,5 +138,5 @@ def _create_page(item: dict) -> bool:
     if resp.status_code == 200:
         return True
     else:
-        print(f"[Notion] Failed to create page: {resp.status_code} — {resp.text[:200]}")
+        print(f"[Notion] Failed to create page: {resp.status_code} — {resp.text[:500]}")
         return False
