@@ -65,7 +65,7 @@ storage:
 ai:
   enabled: true
   model: "gemini-2.0-flash-lite"
-  min_score: 3
+  min_score: 0
   rate_limit_seconds: 7
   batch_size: 5
 
