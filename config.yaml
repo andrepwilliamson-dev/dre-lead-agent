@@ -1,0 +1,81 @@
+# Dre's Lead Intelligence Agent — Configuration
+# Edit this file to tune what gets collected and scored
+
+filters:
+  required_keywords:
+    - producer
+    - content
+    - video
+    - branded
+    - creative
+    - campaign
+    - social media
+    - production
+  blocked_keywords:
+    - unpaid
+    - intern
+    - junior
+    - entry level
+    - volunteer
+
+targets:
+  client_types:
+    - startup
+    - mid-size brand
+    - content studio
+    - creative agency
+  industries:
+    - lifestyle
+    - consumer goods
+    - entertainment
+    - food and beverage
+    - tech
+    - fashion
+    - beauty
+    - sports
+  locations:
+    - Toronto
+    - Canada
+    - Remote
+    - United States
+
+scoring:
+  high_signals:
+    - "content producer"
+    - "video producer"
+    - "creative producer"
+    - "line producer"
+    - "head of content"
+    - "brand content"
+    - "series funding"
+    - "seed round"
+    - "series a"
+    - "series b"
+    - "product launch"
+    - "campaign"
+  low_signals:
+    - "enterprise"
+    - "fortune 500"
+    - "b2b saas"
+    - "internal only"
+
+storage:
+  provider: "notion"
+
+ai:
+  enabled: true
+  model: "gemini-2.0-flash-lite"
+  min_score: 5
+  rate_limit_seconds: 7
+  batch_size: 5
+
+feedback:
+  positive_statuses:
+    - "Pitched"
+    - "In Conversation"
+    - "Booked"
+    - "Hot Lead"
+  negative_statuses:
+    - "Skip"
+    - "Not a Fit"
+    - "No Response"
