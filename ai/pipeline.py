@@ -24,6 +24,8 @@ def analyse_batch(
         prompt = _build_prompt(batch, context, preference_prompt)
         result = generate(prompt, rate_limit=rate_limit)
 
+        print(f"[AI] Raw result keys: {list(result.keys())}")
+        print(f"[AI] Leads returned: {len(result.get('leads', []))}, expected: {len(batch)}")
         scored = result.get("leads", [])
         if len(scored) != len(batch):
             # Fallback: attach raw items unscored
