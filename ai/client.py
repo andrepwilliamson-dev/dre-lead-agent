@@ -10,10 +10,10 @@ import requests
 _last_call = 0.0
 
 MODEL_FALLBACK = [
-    "gemini-2.0-flash-lite",
+    "gemini-1.5-flash",
+    "gemini-1.5-flash-8b",
     "gemini-2.0-flash",
-    "gemini-2.5-flash",
-    "gemini-flash-lite-latest",
+    "gemini-2.0-flash-lite",
 ]
 
 
