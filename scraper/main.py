@@ -6,7 +6,7 @@ import os
 import yaml
 from pathlib import Path
 
-from scraper.sources import indeed_jobs, productionhub, startup_funding
+from scraper.sources import wellfound, weworkremotely, betakit_funding
 from storage.notion_sync import sync
 
 CONFIG_PATH = Path(__file__).parent.parent / "config.yaml"
@@ -33,9 +33,9 @@ def main():
     print("Collecting leads from all sources...")
 
     sources = [
-        ("Indeed CA", indeed_jobs),
-        ("ProductionHUB", productionhub),
-        ("Startup Funding", startup_funding),
+        ("Wellfound", wellfound),
+        ("We Work Remotely", weworkremotely),
+        ("BetaKit", betakit_funding),
     ]
 
     all_items = []
@@ -75,10 +75,10 @@ def main():
             deduped,
             context=context,
             preference_prompt=preference,
-            batch_size=ai_cfg.get("batch_size", 5),
-            rate_limit=ai_cfg.get("rate_limit_seconds", 7),
+            batch_size=ai_cfg.get("batch_size", 3),
+            rate_limit=ai_cfg.get("rate_limit_seconds", 10),
         )
-        min_score = ai_cfg.get("min_score", 5)
+        min_score = ai_cfg.get("min_score", 0)
         before = len(deduped)
         deduped = [i for i in deduped if i.get("ai_score", 0) >= min_score]
         print(f"After score filter (min {min_score}): {len(deduped)} leads (filtered {before - len(deduped)})")
